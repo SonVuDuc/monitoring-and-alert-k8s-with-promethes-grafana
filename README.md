@@ -1,1 +1,1 @@
-# monitoring-and-alert-k8s-with-promethes-grafana
+# Monitoring và Alert Kubernetes with Prometheus-Grafana
