@@ -44,6 +44,28 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 ### Master Node
 
-SSH đến node Master
+Cài đặt Kubernetes Cluster với network plugin **Calico**
+
+SSH đến VPS Master và chạy lệnh sau để khởi tạo node Master
+
+```
+kubeadm init --pod-network-cidr=192.168.0.0/16
+```
+Đợi quá trình khởi tạo hoàn tất, chạy lệnh sau:
+
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+Cài đặt plugin Calico:
+
+```
+kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
+kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
+kubectl taint nodes --all node-role.kubernetes.io/master-
+```
+
+
 
 ## 3. Cài đặt Prometheus và Grafana
