@@ -4,9 +4,9 @@
 
 3 VPS hoặc VM:
 
-  +) 1 Node Master
-  +) 2 Node Worker
-  +) 1 Node Rancher
+  + 1 Node Master
+  + 2 Node Worker
+  + 1 Node Rancher
 
 Cấu hình: 2 CPU, 4GB RAM
 Hệ điều hành: Ubuntu 18.04 Server
