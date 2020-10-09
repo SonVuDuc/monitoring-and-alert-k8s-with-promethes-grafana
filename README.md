@@ -84,6 +84,14 @@ root@master:~#
 
 SSH đến Worker Node và nhập lệnh join command từ Master Node trước đó
 
-
+Đợi tầm vài phút, chạy lệnh sau trên Master Node để kiểm tra các Worker Node đã tham gia cluster chưa:
+```
+root@master:~# kubectl get nodes
+NAME      STATUS   ROLES    AGE    VERSION
+master    Ready    master   6d6h   v1.19.2
+worker1   Ready    <none>   6d5h   v1.19.2
+worker2   Ready    <none>   6d5h   v1.19.2
+root@master:~# 
+```
 
 ## 3. Cài đặt Prometheus và Grafana
