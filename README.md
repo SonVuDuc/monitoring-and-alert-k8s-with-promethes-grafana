@@ -109,3 +109,9 @@ docker run -d --restart=unless-stopped \
 
 
 ## 3. Cài đặt Prometheus và Grafana
+
+### Helm
+
+### Expose Service
+
+## 4. Monitoring
