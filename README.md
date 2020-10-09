@@ -94,4 +94,18 @@ worker2   Ready    <none>   6d5h   v1.19.2
 root@master:~# 
 ```
 
+### Rancher Node
+
+SSH đến Rancher Node và chạy lệnh sau để cài đặt Rancher:
+```
+docker run -d --restart=unless-stopped \
+    -p 80:80 -p 443:443 \
+    -v /opt/rancher:/var/lib/rancher \
+    rancher/rancher:latest
+```
+
+Đợi vài phút để cài đặt xong. Truy cập vào giao diện web của Rancher đã cài đặt thông qua IP
+
+
+
 ## 3. Cài đặt Prometheus và Grafana
