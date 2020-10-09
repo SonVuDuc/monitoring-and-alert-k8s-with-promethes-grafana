@@ -66,6 +66,24 @@ kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
 kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
+Chạy lệnh sau để lấy **join-command**
+```
+kubeadm token create --print-join-command
+```
+
+Master node sẽ trả về 1 join command dùng để chạy trên Worker để tham gia vào cluster
+
+```
+root@master:~# kubeadm token create --print-join-command
+kubeadm join 10.148.0.6:6443 --token o7gqha.c89gpgn8kt3jgckt     --discovery-token-ca-cert-hash sha256:6401eb108c8d75e558dd2d6207b1d88b1eca8602d8e7eea71f08da2643a27f19 
+root@master:~# 
+
+```
+
+### Worker Node
+
+SSH đến Worker Node và nhập lệnh join command từ Master Node trước đó
+
 
 
 ## 3. Cài đặt Prometheus và Grafana
