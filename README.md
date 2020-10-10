@@ -201,18 +201,148 @@ Có 3 serive cần lưu ý là:
   
 Lần lượt là service của Prometheus, Grafana và Alert
 
-Chỉnh sửa các service bằng lệnh edit svc
-
-Service **prome-grafana-kube-prometh-prometheus**
+Chỉnh sửa 3 service bằng lệnh edit svc
 
 ```
 kubectl edit svc prome-grafana-kube-prometh-prometheus --namespaces monitoring
 ```
 
+```
+kubectl edit svc prome-grafana --namespaces monitoring
+```
+
+```
+kubectl edit svc prome-grafana-kube-prometh-alertmanager --namespaces monitoring
+```
+
 ![Screenshot from 2020-10-10 23-43-52](https://user-images.githubusercontent.com/32956424/95660499-7e5a4100-0b52-11eb-9d09-168ba12d5afd.png)
 
-Sửa mục **type** từ ClusterIP thành NodePort
+Sửa mục **type** của 3 service từ ClusterIP thành NodePort
 
+
+Dùng lệnh describe svc để xem NodePort của service đó
+
+```
+root@master:~# kubectl describe svc  prome-grafana-kube-prometh-prometheus --namespace monitoring
+Name:                     prome-grafana-kube-prometh-prometheus
+Namespace:                monitoring
+Labels:                   app=kube-prometheus-stack-prometheus
+                          app.kubernetes.io/managed-by=Helm
+                          chart=kube-prometheus-stack-9.4.10
+                          heritage=Helm
+                          release=prome-grafana
+                          self-monitor=true
+Annotations:              field.cattle.io/publicEndpoints:
+                            [{"addresses":["10.148.0.7"],"port":32082,"protocol":"TCP","serviceName":"monitoring:prome-grafana-kube-prometh-prometheus","allNodes":tru...
+                          meta.helm.sh/release-name: prome-grafana
+                          meta.helm.sh/release-namespace: monitoring
+Selector:                 app=prometheus,prometheus=prome-grafana-kube-prometh-prometheus
+Type:                     NodePort
+IP:                       10.102.234.129
+Port:                     web  9090/TCP
+TargetPort:               9090/TCP
+NodePort:                 web  32082/TCP
+Endpoints:                192.168.189.91:9090
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+root@master:~# 
+
+```
+NodePort của service **prome-grafana-kube-prometh-prometheus** là 32082
+
+```
+root@master:~# kubectl describe svc  prome-grafana --namespace monitoring
+Name:                     prome-grafana
+Namespace:                monitoring
+Labels:                   app.kubernetes.io/instance=prome-grafana
+                          app.kubernetes.io/managed-by=Helm
+                          app.kubernetes.io/name=grafana
+                          app.kubernetes.io/version=7.2.0
+                          helm.sh/chart=grafana-5.6.12
+Annotations:              field.cattle.io/publicEndpoints:
+                            [{"addresses":["10.148.0.7"],"port":30988,"protocol":"TCP","serviceName":"monitoring:prome-grafana","allNodes":true}]
+                          meta.helm.sh/release-name: prome-grafana
+                          meta.helm.sh/release-namespace: monitoring
+Selector:                 app.kubernetes.io/instance=prome-grafana,app.kubernetes.io/name=grafana
+Type:                     NodePort
+IP:                       10.96.188.209
+Port:                     service  80/TCP
+TargetPort:               3000/TCP
+NodePort:                 service  30988/TCP
+Endpoints:                192.168.189.92:3000
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+root@master:~# 
+```
+NodePort của service **prome-grafana** là 30988
+
+```
+root@master:~# kubectl describe svc  prome-grafana-kube-prometh-alertmanager --namespace monitoring
+Name:                     prome-grafana-kube-prometh-alertmanager
+Namespace:                monitoring
+Labels:                   app=kube-prometheus-stack-alertmanager
+                          app.kubernetes.io/managed-by=Helm
+                          chart=kube-prometheus-stack-9.4.10
+                          heritage=Helm
+                          release=prome-grafana
+                          self-monitor=true
+Annotations:              field.cattle.io/publicEndpoints:
+                            [{"addresses":["10.148.0.7"],"port":30686,"protocol":"TCP","serviceName":"monitoring:prome-grafana-kube-prometh-alertmanager","allNodes":t...
+                          meta.helm.sh/release-name: prome-grafana
+                          meta.helm.sh/release-namespace: monitoring
+Selector:                 alertmanager=prome-grafana-kube-prometh-alertmanager,app=alertmanager
+Type:                     NodePort
+IP:                       10.108.117.156
+Port:                     web  9093/TCP
+TargetPort:               9093/TCP
+NodePort:                 web  30686/TCP
+Endpoints:                192.168.235.148:9093
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+root@master:~# 
+```
+
+NodePort của service **prome-grafana-kube-prometh-alertmanager** là 30686
+
+#### Truy cập vào service
+
+Chạy lệnh get pod để xem các service chạy trên Node nào
+
+```
+root@master:~# kubectl get pods --namespace monitoring -o wide
+NAME                                                     READY   STATUS    RESTARTS   AGE   IP                NODE      NOMINATED NODE   READINESS GATES
+alertmanager-prome-grafana-kube-prometh-alertmanager-0   2/2     Running   4          33h   192.168.235.148   worker1   <none>           <none>
+prome-grafana-7c7fc9ddff-vhsl5                           2/2     Running   4          33h   192.168.189.92    worker2   <none>           <none>
+prome-grafana-kube-prometh-operator-fd6495577-bqjfj      2/2     Running   5          33h   192.168.235.147   worker1   <none>           <none>
+prome-grafana-kube-state-metrics-7958b79b99-xzn9q        1/1     Running   3          33h   192.168.189.90    worker2   <none>           <none>
+prome-grafana-prometheus-node-exporter-98jbw             1/1     Running   2          33h   10.148.0.8        worker1   <none>           <none>
+prome-grafana-prometheus-node-exporter-lckzr             1/1     Running   2          33h   10.148.0.6        master    <none>           <none>
+prome-grafana-prometheus-node-exporter-r5b49             1/1     Running   2          33h   10.148.0.7        worker2   <none>           <none>
+prometheus-prome-grafana-kube-prometh-prometheus-0       3/3     Running   7          33h   192.168.189.91    worker2   <none>           <none>
+
+```
+Service **prome-grafana-kube-prometh-prometheus** có Endpoint là 192.168.189.91:9090 -> node Worker2
+
+Service **prome-grafana** có Endpoint là 192.168.189.92:3000 -> node Worker2
+
+Service **prome-grafana-kube-prometh-alertmanager** có Endpoint là 192.168.235.148:9093 -> node Worker1
+
+Truy cập vào địa chỉ http://<Extenal IP Node>:NodePort
+  
+**Prometheus**
+
+![Screenshot from 2020-10-10 23-57-04](https://user-images.githubusercontent.com/32956424/95660779-5370ec80-0b54-11eb-89cd-e587d6e3284f.png)
+
+
+**Grafana**
+![Screenshot from 2020-10-10 23-55-32](https://user-images.githubusercontent.com/32956424/95660759-1c9ad680-0b54-11eb-8721-c2355e5c6818.png)
+
+**Alert Manager**
+
+![Screenshot from 2020-10-10 23-58-11](https://user-images.githubusercontent.com/32956424/95660791-7a2f2300-0b54-11eb-96f8-f1e6c27a4d57.png)
 
 
 
