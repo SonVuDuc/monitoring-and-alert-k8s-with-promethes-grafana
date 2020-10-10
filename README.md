@@ -156,9 +156,47 @@ helm repo update
 Cài đặt chart 
 
 ```
-helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack
+helm install prome-grafana prometheus-community/kube-prometheus-stack
 ```
 
 ### Expose Service
+
+Để sử dụng được dịch vụ của Prometheus và Grafana, cần expose dịch vụ ra ngoài internet. Sử dụng Node Port
+
+Dùng lệnh get pod để xem các pod của Promthes chạy trên node nào
+
+```
+root@master:~# kubectl get pods --namespace monitoring -o wide
+NAME                                                     READY   STATUS    RESTARTS   AGE   IP                NODE      NOMINATED NODE   READINESS GATES
+alertmanager-prome-grafana-kube-prometh-alertmanager-0   2/2     Running   4          33h   192.168.235.148   worker1   <none>           <none>
+prome-grafana-7c7fc9ddff-vhsl5                           2/2     Running   4          33h   192.168.189.92    worker2   <none>           <none>
+prome-grafana-kube-prometh-operator-fd6495577-bqjfj      2/2     Running   5          33h   192.168.235.147   worker1   <none>           <none>
+prome-grafana-kube-state-metrics-7958b79b99-xzn9q        1/1     Running   3          33h   192.168.189.90    worker2   <none>           <none>
+prome-grafana-prometheus-node-exporter-98jbw             1/1     Running   2          33h   10.148.0.8        worker1   <none>           <none>
+prome-grafana-prometheus-node-exporter-lckzr             1/1     Running   2          33h   10.148.0.6        master    <none>           <none>
+prome-grafana-prometheus-node-exporter-r5b49             1/1     Running   2          33h   10.148.0.7        worker2   <none>           <none>
+prometheus-prome-grafana-kube-prometh-prometheus-0       3/3     Running   7          33h   192.168.189.91    worker2   <none>           <none>
+root@master:~# 
+```
+
+Dùng lệnh get service để xem các dịch vụ
+
+```
+root@master:~# kubectl get svc --namespace monitoring -o wide
+NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE   SELECTOR
+alertmanager-operated                     ClusterIP   None             <none>        9093/TCP,9094/TCP,9094/UDP   33h   app=alertmanager
+prome-grafana                             ClusterIP    10.96.188.209    <none>        80:30988/TCP                 33h   app.kubernetes.io/instance=prome-grafana,app.kubernetes.io/name=grafana
+prome-grafana-kube-prometh-alertmanager   ClusterIP    10.108.117.156   <none>        9093:30686/TCP               33h   alertmanager=prome-grafana-kube-prometh-alertmanager,app=alertmanager
+prome-grafana-kube-prometh-operator       ClusterIP   10.98.19.54      <none>        8080/TCP,443/TCP             33h   app=kube-prometheus-stack-operator,release=prome-grafana
+prome-grafana-kube-prometh-prometheus     ClusterIP    10.102.234.129   <none>        9090:32082/TCP               33h   app=prometheus,prometheus=prome-grafana-kube-prometh-prometheus
+prome-grafana-kube-state-metrics          ClusterIP   10.97.255.190    <none>        8080/TCP                     33h   app.kubernetes.io/instance=prome-grafana,app.kubernetes.io/name=kube-state-metrics
+prome-grafana-prometheus-node-exporter    ClusterIP   10.107.59.94     <none>        9100/TCP                     33h   app=prometheus-node-exporter,release=prome-grafana
+\prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     33h   app=prometheus
+root@master:~# 
+```
+
+
+
+
 
 ## 4. Monitoring
