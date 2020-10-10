@@ -104,7 +104,17 @@ docker run -d --restart=unless-stopped \
     rancher/rancher:latest
 ```
 
-Đợi vài phút để cài đặt xong. Truy cập vào giao diện web của Rancher đã cài đặt thông qua IP
+Đợi vài phút để cài đặt xong. Truy cập vào giao diện web của Rancher đã cài đặt thông qua IP của node Rancher. Đăng nhập với **username** và **password** là **admin**
+
+![Screenshot from 2020-10-10 22-55-32](https://user-images.githubusercontent.com/32956424/95659517-d04b9880-0b4b-11eb-910b-8d3456fdd968.png)
+
+Thêm K8s cluster vào Rancher
+
+![Screenshot from 2020-10-10 22-58-11](https://user-images.githubusercontent.com/32956424/95659567-23255000-0b4c-11eb-838d-0ba3bd881fa6.png)
+
+
+![Screenshot from 2020-10-10 22-58-21](https://user-images.githubusercontent.com/32956424/95659575-291b3100-0b4c-11eb-8e9e-de49a6de90e2.png)
+
 
 
 
