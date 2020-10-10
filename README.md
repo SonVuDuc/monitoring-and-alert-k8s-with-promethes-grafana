@@ -336,7 +336,7 @@ Service **prome-grafana** có Endpoint là 192.168.189.92:3000 -> node Worker2
 
 Service **prome-grafana-kube-prometh-alertmanager** có Endpoint là 192.168.235.148:9093 -> node Worker1
 
-Truy cập vào địa chỉ http://<Extenal IP Node>:NodePort
+Truy cập vào địa chỉ http://Extenal IP Node:NodePort
   
 **Prometheus**
 
