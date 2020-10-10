@@ -193,9 +193,25 @@ prome-grafana-kube-state-metrics          ClusterIP   10.97.255.190    <none>   
 prome-grafana-prometheus-node-exporter    ClusterIP   10.107.59.94     <none>        9100/TCP                     33h   app=prometheus-node-exporter,release=prome-grafana
 prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     33h   app=prometheus
 root@master:~#
+```
+Có 3 serive cần lưu ý là: 
+  + **prome-grafana-kube-prometh-prometheus**
+  + **prome-grafana**
+  + **prome-grafana-kube-prometh-alertmanager**
+  
+Lần lượt là service của Prometheus, Grafana và Alert
+
+Chỉnh sửa các service bằng lệnh edit svc
+
+Service **prome-grafana-kube-prometh-prometheus**
 
 ```
+kubectl edit svc prome-grafana-kube-prometh-prometheus --namespaces monitoring
+```
 
+![Screenshot from 2020-10-10 23-43-52](https://user-images.githubusercontent.com/32956424/95660499-7e5a4100-0b52-11eb-9d09-168ba12d5afd.png)
+
+Sửa mục **type** từ ClusterIP thành NodePort
 
 
 
