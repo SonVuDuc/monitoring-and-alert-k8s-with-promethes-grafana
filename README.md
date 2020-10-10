@@ -113,6 +113,8 @@ Thêm K8s cluster vào Rancher
 ![Screenshot from 2020-10-10 22-58-11](https://user-images.githubusercontent.com/32956424/95659567-23255000-0b4c-11eb-838d-0ba3bd881fa6.png)
 
 
+Chạy các lệnh trên node Master để import cluster vào Rancher
+
 ![Screenshot from 2020-10-10 22-58-21](https://user-images.githubusercontent.com/32956424/95659575-291b3100-0b4c-11eb-8e9e-de49a6de90e2.png)
 
 
@@ -121,6 +123,41 @@ Thêm K8s cluster vào Rancher
 ## 3. Cài đặt Prometheus và Grafana
 
 ### Helm
+
+Helm là package manager của Kubernetes, cài đặt với Helm sẽ đơn giản hơn thay vì viết từng file yaml
+
+#### Cài đặt Helm 
+
+Trên Master node, chạy lệnh sau để cài đặt Helm
+
+```
+curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+sudo apt-get install apt-transport-https --yes
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+
+```
+Kiểm tra version của Helm bằng lệnh
+
+```
+helm version
+```
+
+### Cài đặt Prometheus và Grafana bằng Helm
+
+Thêm repo 
+
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo update
+```
+Cài đặt chart 
+
+```
+helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack
+```
 
 ### Expose Service
 
