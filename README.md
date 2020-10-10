@@ -153,10 +153,16 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm repo update
 ```
+
+Tạo namespace cho monitoring
+
+```
+kubectl create namespace monitoring
+```
 Cài đặt chart 
 
 ```
-helm install prome-grafana prometheus-community/kube-prometheus-stack
+helm install --namespace monitoring prome-grafana prometheus-community/kube-prometheus-stack
 ```
 
 ### Expose Service
@@ -217,7 +223,7 @@ kubectl edit svc prome-grafana-kube-prometh-alertmanager --namespaces monitoring
 
 ![Screenshot from 2020-10-10 23-43-52](https://user-images.githubusercontent.com/32956424/95660499-7e5a4100-0b52-11eb-9d09-168ba12d5afd.png)
 
-Sửa mục **type** của 3 service từ ClusterIP thành NodePort
+Sửa mục **type** của 3 service từ ClusterIP thành NodePort và lưu lại
 
 
 Dùng lệnh describe svc để xem NodePort của service đó
@@ -338,6 +344,7 @@ Truy cập vào địa chỉ http://<Extenal IP Node>:NodePort
 
 
 **Grafana**
+
 ![Screenshot from 2020-10-10 23-55-32](https://user-images.githubusercontent.com/32956424/95660759-1c9ad680-0b54-11eb-8721-c2355e5c6818.png)
 
 **Alert Manager**
