@@ -356,6 +356,7 @@ Truy cập vào địa chỉ http://<Extenal IP Node>:NodePort
 ## 4. Monitoring
 
 Prometheus dùng các trình daemon cài sẵn trên các node để thu thập các thông tin cần thiết, giao tiếp với máy chủ quản lý monitor qua giao thức HTTP/HTTPs và lưu trữ data theo dạng time-series database (TSDB).
+
 Tại Prometheus, người dùng có thể xem xét, kiểm tra các thông số của cluster bằng cách chọn các thông số muốn xem, chọn Excute
 
 ![Screenshot from 2020-10-11 00-05-23](https://user-images.githubusercontent.com/32956424/95660954-7e0f7500-0b55-11eb-9af0-006f2625e208.png)
@@ -365,4 +366,16 @@ Và có thể hiển thị kết quả dưới dạng biểu đồ
 ![Screenshot from 2020-10-11 00-03-39](https://user-images.githubusercontent.com/32956424/95660923-3daff700-0b55-11eb-8237-12b7f71abbe1.png)
 
 Tuy nhiên, sử dụng Grafana sẽ có giao diện đẹp hơn, chia thành nhiều mục để người dùng dễ dàng hơn trong việc đánh giá hiệu suất của cluster. Grafana sẽ lấy dữ liệu metric thu được từ Prometheus, phân tích và tạo ra dashboard mô tả trực quan các thông số như CPU, RAM, Disk, Network...
+
+![Screenshot from 2020-10-11 00-10-27](https://user-images.githubusercontent.com/32956424/95661024-30dfd300-0b56-11eb-949d-e247930aaec9.png)
+
+Thống kê chi tiết các dashboard của Grafana
+
+Người dùng có thể chọn các dashboard của Grafana
+
+![Screenshot from 2020-10-11 00-11-23](https://user-images.githubusercontent.com/32956424/95661040-51a82880-0b56-11eb-87e2-c8ebb9b4bd3c.png)
+
+Tùy chọn chi tiết thời gian cập nhật, node cụ thể, namespace...
+
+![Screenshot from 2020-10-11 00-11-23](https://user-images.githubusercontent.com/32956424/95661040-51a82880-0b56-11eb-87e2-c8ebb9b4bd3c.png)
 
