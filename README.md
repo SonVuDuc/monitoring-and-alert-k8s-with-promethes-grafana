@@ -191,8 +191,9 @@ prome-grafana-kube-prometh-operator       ClusterIP   10.98.19.54      <none>   
 prome-grafana-kube-prometh-prometheus     ClusterIP    10.102.234.129   <none>        9090:32082/TCP               33h   app=prometheus,prometheus=prome-grafana-kube-prometh-prometheus
 prome-grafana-kube-state-metrics          ClusterIP   10.97.255.190    <none>        8080/TCP                     33h   app.kubernetes.io/instance=prome-grafana,app.kubernetes.io/name=kube-state-metrics
 prome-grafana-prometheus-node-exporter    ClusterIP   10.107.59.94     <none>        9100/TCP                     33h   app=prometheus-node-exporter,release=prome-grafana
-\prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     33h   app=prometheus
-root@master:~# 
+prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     33h   app=prometheus
+root@master:~#
+
 ```
 
 
