@@ -210,15 +210,15 @@ Lần lượt là service của Prometheus, Grafana và Alert
 Chỉnh sửa 3 service bằng lệnh edit svc
 
 ```
-kubectl edit svc prome-grafana-kube-prometh-prometheus --namespaces monitoring
+kubectl edit svc prome-grafana-kube-prometh-prometheus --namespace monitoring
 ```
 
 ```
-kubectl edit svc prome-grafana --namespaces monitoring
+kubectl edit svc prome-grafana --namespace monitoring
 ```
 
 ```
-kubectl edit svc prome-grafana-kube-prometh-alertmanager --namespaces monitoring
+kubectl edit svc prome-grafana-kube-prometh-alertmanager --namespace monitoring
 ```
 
 ![Screenshot from 2020-10-10 23-43-52](https://user-images.githubusercontent.com/32956424/95660499-7e5a4100-0b52-11eb-9d09-168ba12d5afd.png)
@@ -378,4 +378,36 @@ Người dùng có thể chọn các dashboard của Grafana
 Tùy chọn chi tiết thời gian cập nhật, node cụ thể, namespace...
 
 ![Screenshot from 2020-10-11 00-11-23](https://user-images.githubusercontent.com/32956424/95661040-51a82880-0b56-11eb-87e2-c8ebb9b4bd3c.png)
+
+## 5. Alerting
+
+Alert giúp người dùng xác định những vấn đề bất thường xảy ra trong hệ thống. Bằng cách tùy chỉnh những thay đổi, người dùng có thể giảm thiểu sự gián đoạn trong hệ thống
+
+Alert gồm 2 phần:
+  + **Alert Rule**: Là điều kiện để Alert được kích hoạt, Alert Rule được người dùng định nghĩa bằng 1 hoặc nhiều điều kiện
+  + **Notification channel**: Cách mà Alert được gửi đi, khi điều kiện của Alert được kích hoạt. Grafana sẽ gửi sẽ gửi thông báo cho channel. Notification channel có thế là email, Telegram, Discord... 
+  
+Grafana 4.0 trở lên hỗ trợ cấu hình Alert
+
+### Notification Channel Discord 
+
+Discord là hệ thống trò chuyện bằng giọng nói và văn bản, cho phép giao tiếp với những người khác. Bất cứ ai cũng có thể tạo ra một máy chủ lưu trữ thảo luận với mọi người. Discord có mặt trên các hệ điều hành như Window, Ubuntu, Mac OS, Android...
+
+Sau khi đăng ký tài khoản Discord, tiến hành tạo 1 server Discord - đây là nơi mà Alert từ Grafana sẽ gửi về. Đặt tên cho server
+
+![Screenshot from 2020-10-20 13-28-26](https://user-images.githubusercontent.com/32956424/96551290-3c609600-12dc-11eb-822d-fb78b4fa9fa2.png)
+
+Vào Server Setting -> Integration. Tạo 1 Webhook cho Server 
+
+![Screenshot from 2020-10-20 13-28-26](https://user-images.githubusercontent.com/32956424/96551290-3c609600-12dc-11eb-822d-fb78b4fa9fa2.png)
+
+Đặt tên cho Webhook và copy Webhook Url 
+
+![Screenshot from 2020-10-20 14-00-02](https://user-images.githubusercontent.com/32956424/96551490-91041100-12dc-11eb-9e13-2c0e32b51e7d.png)
+
+
+
+
+
+
 
