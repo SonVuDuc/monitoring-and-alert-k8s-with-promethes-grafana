@@ -385,7 +385,7 @@ Alert giúp người dùng xác định những vấn đề bất thường xả
 
 Alert gồm 2 phần:
   + **Alert Rule**: Là điều kiện để Alert được kích hoạt, Alert Rule được người dùng định nghĩa bằng 1 hoặc nhiều điều kiện
-  + **Notification channel**: Cách mà Alert được gửi đi, khi điều kiện của Alert được kích hoạt. Grafana sẽ gửi sẽ gửi thông báo cho channel. Notification channel có thế là email, Telegram, Discord... 
+  + **Notification channel**: Cách mà Alert được gửi đi, khi điều kiện của Alert được kích hoạt. Grafana sẽ gửi sẽ gửi thông báo cho channel. Notification channel có thế là E-mail, Telegram, Discord... 
   
 Grafana 4.0 trở lên hỗ trợ cấu hình Alert
 
@@ -397,7 +397,7 @@ Sau khi đăng ký tài khoản Discord, tiến hành tạo 1 server Discord - �
 
 ![Screenshot from 2020-10-20 13-28-26](https://user-images.githubusercontent.com/32956424/96551290-3c609600-12dc-11eb-822d-fb78b4fa9fa2.png)
 
-Vào Server Setting -> Integration. Tạo 1 Webhook cho Server 
+Vào **Server Setting** -> **Integration**. Tạo 1 Webhook cho Server 
 
 ![Screenshot from 2020-10-20 13-29-09](https://user-images.githubusercontent.com/32956424/96551592-bf81ec00-12dc-11eb-87ec-69fb091c1f20.png)
 
@@ -405,7 +405,7 @@ Vào Server Setting -> Integration. Tạo 1 Webhook cho Server
 
 ![Screenshot from 2020-10-20 14-02-12](https://user-images.githubusercontent.com/32956424/96551680-dfb1ab00-12dc-11eb-8f1a-fa7010cddc49.png)
 
-Truy cập vào phần Alert trên Grafana, chọn A để tạo Notification Channel
+Truy cập vào phần Alert trên Grafana, chọn **New Channel** để tạo Notification Channel
 
 Đặt tên cho Channel, chọn type Discord, paste Webhook URL của Discord đã copy trước đó vào phần Webhook URL
 
