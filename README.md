@@ -1,6 +1,6 @@
 # Monitoring và Alerting Kubernetes với Prometheus-Grafana
 
-## 1.Yêu cầu
+## 1. Yêu cầu
 
 3 VPS hoặc VM:
 
@@ -13,7 +13,7 @@ Cấu hình: 2 CPU, 4GB RAM
 Hệ điều hành: Ubuntu 18.04 Server
 
 
-## 2.Cài đặt Kubernetes Cluster
+## 2. Cài đặt Kubernetes Cluster
 
 ### Cài đặt cơ bản
 
