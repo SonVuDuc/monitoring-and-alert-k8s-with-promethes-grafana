@@ -399,11 +399,12 @@ Sau khi đăng ký tài khoản Discord, tiến hành tạo 1 server Discord - �
 
 Vào Server Setting -> Integration. Tạo 1 Webhook cho Server 
 
-![Screenshot from 2020-10-20 13-28-26](https://user-images.githubusercontent.com/32956424/96551290-3c609600-12dc-11eb-822d-fb78b4fa9fa2.png)
+![Screenshot from 2020-10-20 13-29-09](https://user-images.githubusercontent.com/32956424/96551592-bf81ec00-12dc-11eb-87ec-69fb091c1f20.png)
 
 Đặt tên cho Webhook và copy Webhook Url 
 
-![Screenshot from 2020-10-20 14-00-02](https://user-images.githubusercontent.com/32956424/96551490-91041100-12dc-11eb-9e13-2c0e32b51e7d.png)
+![Screenshot from 2020-10-20 14-02-12](https://user-images.githubusercontent.com/32956424/96551680-dfb1ab00-12dc-11eb-8f1a-fa7010cddc49.png)
+
 
 
 
