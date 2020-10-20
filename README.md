@@ -401,9 +401,25 @@ Vào Server Setting -> Integration. Tạo 1 Webhook cho Server
 
 ![Screenshot from 2020-10-20 13-29-09](https://user-images.githubusercontent.com/32956424/96551592-bf81ec00-12dc-11eb-87ec-69fb091c1f20.png)
 
-Đặt tên cho Webhook và copy Webhook Url 
+Đặt tên cho Webhook và copy Webhook URL
 
 ![Screenshot from 2020-10-20 14-02-12](https://user-images.githubusercontent.com/32956424/96551680-dfb1ab00-12dc-11eb-8f1a-fa7010cddc49.png)
+
+Truy cập vào phần Alert trên Grafana, chọn A để tạo Notification Channel
+
+Đặt tên cho Channel, chọn type Discord, paste Webhook URL của Discord đã copy trước đó vào phần Webhook URL
+
+![Screenshot from 2020-10-20 14-04-33](https://user-images.githubusercontent.com/32956424/96551902-361ee980-12dd-11eb-95a3-78e930ba5ae8.png)
+
+Để kiểm tra Notification có hoạt động hay không, click vào **Test**. Grafana sẽ gửi 1 Alert Test về Discord server
+
+![Screenshot from 2020-10-20 14-07-33](https://user-images.githubusercontent.com/32956424/96552184-9f066180-12dd-11eb-951a-b2e7f2eaf3b0.png)
+
+Test thành công
+
+
+
+
 
 
 
